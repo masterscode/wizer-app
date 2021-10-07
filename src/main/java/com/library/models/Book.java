@@ -1,16 +1,17 @@
 package com.library.models;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.time.LocalDate;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book extends BaseEntity{
     private String title;
 
@@ -20,9 +21,9 @@ public class Book extends BaseEntity{
     private Boolean isDeleted = false;
     private Boolean isBorrowed = false;
     private String author;
-    private String publisher;
     private String language;
-    private LocalDate publicationDate;
-    private Long pages;
     private Double price;
+
+    @ManyToOne(targetEntity = BookCategory.class)
+    BookCategory category;
 }

@@ -3,9 +3,9 @@ package com.library.services;
 
 import com.library.models.Book;
 import com.library.payloads.requests.BookRequest;
-import com.library.payloads.requests.BorrowBookRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The API will be used to
@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface BookService {
     Book addBook(BookRequest bookRequest);
-    Book updateBook(Long id, BookRequest request);
+    Book updateBook(String isbn, BookRequest request);
     Book deleteBook(Long id);
-    List<Book> borrowBook(BorrowBookRequest borrowRequest);
     List<Book> searchBook(String searchQuery);
     List<Book> getAllBooks();
+    Book getBookDetail(String isbn);
 
 }

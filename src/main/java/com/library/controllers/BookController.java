@@ -2,7 +2,6 @@ package com.library.controllers;
 
 import com.library.models.Book;
 import com.library.payloads.requests.BookRequest;
-import com.library.payloads.requests.BorrowBookRequest;
 import com.library.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,8 @@ public class BookController {
         );
     }
 
-    @GetMapping("/{id}")
-    public String getBook(@PathVariable Long id){
+    @GetMapping("/{isbn}")
+    public @ResponseBody Book getBook(@PathVariable String isbn){
         return null;
     }
 
@@ -39,12 +38,6 @@ public class BookController {
         );
     }
 
-    @PatchMapping("/borrow")
-    public ResponseEntity<List<Book>> borrowBook(@Valid @RequestBody BorrowBookRequest request) {
-        return ResponseEntity.ok(
-                service.borrowBook(request)
-        );
-    }
 
     @PostMapping
     public ResponseEntity<Book> addBook(@Valid @RequestBody BookRequest book){
@@ -53,10 +46,10 @@ public class BookController {
         );
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody BookRequest requestBody){
+    @PatchMapping("/{isbn}")
+    public ResponseEntity<Book> updateBook(@PathVariable String isbn, @Valid @RequestBody BookRequest requestBody){
         return ResponseEntity.ok(
-                service.updateBook(id, requestBody)
+                service.updateBook(isbn, requestBody)
         );
     }
     @DeleteMapping("/{id}")
